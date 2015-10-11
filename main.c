@@ -5,6 +5,8 @@
 
 #include "rip.h"
 
+//#define show_instructions
+
 /*
 Prime:
 21W[D1W[1sSDD4RDD4r5rqms]P1EI[DO9io]i1]
@@ -66,9 +68,11 @@ void delete_jt() {
 void interpret() {
     char *p = prog;
     while(*p) {
-        /*printf(":%c:\t",*p);
+        #ifdef show_instructions
+        printf(":%c:\t",*p);
         dump();
-        printf("\n");*/
+        printf("\n");
+        #endif
         switch(*p) {
         case 'P': op_pop();     break;
         case 'S': op_swap();    break;
@@ -102,13 +106,20 @@ void interpret() {
         case 'g': op_charin();  break;
         case '$': dump();       break;
         default:
-            if(isspace(*p)) while(isspace(*p)) p++;
+            if(isspace(*p)) {
+                while(isspace(*p)) {
+                    p++;
+                }
+                continue;
+            }
             if(isdigit(*p)) {
                 list_node *temp = malloc(sizeof(*temp));
                 mpz_init_set(temp->data,*(mpz_t*)jump_table[p-prog]);
                 temp->down = glob_t;
                 glob_t = temp;
+                break;
             }
+            //error("Command not recognized. ");
         }
         p++;
     }
@@ -121,7 +132,6 @@ int main(int argc, char **argv) {
     }
     prog = argv[1];
     //prog = "21W[D1W[1sSDD4RDD4r5rqms]1EI[DO9io]i1]";
-    //prog = "09s0LO9io$";
 
     build_jump_table();
 
