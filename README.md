@@ -1,5 +1,5 @@
 # qrip
-An (incomplete) C implementation of https://github.com/try-git/try_git.git
+An (incomplete) C implementation of https://github.com/tomsmeding/rip-lang
 
 qrip stands for quick rip
 
