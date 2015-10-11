@@ -5,5 +5,5 @@ qrip stands for quick rip
 
 Requires gmp.h
 ### Todo
-* Implement: n, g, F<bla>[code], <bla> (and l)
+* Implement: n, g, F&lt;bla&gt;[code], &lt;bla&gt; (and l)
 * Improve readability of code
