@@ -14,7 +14,6 @@ Still to implement fully:
     n, g, F<bla>[code], <bla>
 
 Ideas:
-    precompute mpz_t numbers for constants in rip code
     decrease mallocs?
 */
 
@@ -116,12 +115,12 @@ void interpret() {
 }
 
 int main(int argc, char **argv) {
-    /*if(argc!=2) {
+    if(argc!=2) {
         printf("Pass a rip program.\n");
         return 0;
     }
-    prog = argv[1];*/
-    prog = "21W[D1W[1sSDD4RDD4r5rqms]1EI[DO9io]i1]";
+    prog = argv[1];
+    //prog = "21W[D1W[1sSDD4RDD4r5rqms]1EI[DO9io]i1]";
     //prog = "09s0LO9io$";
 
     build_jump_table();
