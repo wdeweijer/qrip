@@ -125,12 +125,29 @@ void interpret() {
     }
 }
 
+void load_prog(char *filename) {
+    FILE *iFile = fopen(filename, "r");
+    if(!iFile) error("Error opening file. ");
+
+    long iFileSize;
+    fseek(iFile, 0, SEEK_END);
+    iFileSize = ftell(iFile);
+    rewind(iFile);
+
+    prog = malloc(iFileSize+1);
+
+    fread(prog, 1, iFileSize, iFile);
+    fclose(iFile);
+    prog[iFileSize] = 0;
+}
+
 int main(int argc, char **argv) {
-    if(argc!=2) {
-        printf("Pass a rip program.\n");
+    if(argc != 2) {
+        printf("No filename given.\n");
         return 0;
     }
-    prog = argv[1];
+
+    load_prog(argv[1]);
     //prog = "21W[D1W[1sSDD4RDD4r5rqms]1EI[DO9io]i1]";
 
     build_jump_table();
