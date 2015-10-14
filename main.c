@@ -5,7 +5,7 @@
 
 #include "rip.h"
 
-#define show_instructions
+//#define show_instructions
 
 /*
 Prime:
@@ -134,8 +134,6 @@ void load_prog(char *filename) {
     iFileSize = ftell(iFile);
     rewind(iFile);
 
-    printf("%i\n",iFileSize);
-
     prog = malloc(iFileSize+1);
 
     fread(prog, 1, iFileSize, iFile);
@@ -151,7 +149,6 @@ int main(int argc, char **argv) {
 
     load_prog(argv[1]);
     //prog = "21W[D1W[1sSDD4RDD4r5rqms]1EI[DO9io]i1]";
-    printf("%s\n",prog);
 
     build_jump_table();
 
